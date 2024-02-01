@@ -20,7 +20,7 @@ public class Agenda {
 
                 case 2:
                     Contato verificar = new Contato();
-                    String dadosContato = verificar.testarNome(sc);
+                    String dadoContato = verificar.testarNome(sc);
                     Contato pessoa = new Contato(verificar.getNome(), verificar.getNumero(), verificar.getEmail());
                     String adicionar = pessoa.adicionarContato(agenda, pessoa);
                     System.out.println("\n" + adicionar);

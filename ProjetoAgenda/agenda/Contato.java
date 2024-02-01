@@ -147,7 +147,7 @@ public class Contato {
         System.out.println("Bem Vindo a Agenda");
 
     }
-    //Escolha para manipulação da lista
+    //Escolha para manipulações da lista
     int escolher(Scanner sc) {
         System.out.println("Escolha uma das opções, utilize os números para escolher:");
         System.out.println("[1] Buscar contato.\n[2] Adicionar novo contato.\n[3] Sair");
