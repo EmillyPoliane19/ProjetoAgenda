@@ -33,7 +33,7 @@ public class Contato {
         this.email = email;
     }
     //Buscar contato na lista
-    void buscarContatoPorNome(Contato[] agenda, Scanner sc) {
+    void buscarContatoPorNome(Contato [] agenda, Scanner sc) {
         System.out.println("Qual o nome?");
         String escolha = sc.nextLine();
 
@@ -58,12 +58,31 @@ public class Contato {
         }
         return null;
     }
+    //Buscar Nome por letra
+    void buscarNomePorLetra (Contato [] agenda,Scanner sc) {
+        System.out.println("Digite a letra de busca:");
+        String letra = sc.nextLine();
+        int contagem = 0; //Implementa uma condição caso não haja contatos ou não encontre contatos.
+        for (Contato contato : agenda) {
+            if (contato != null) {
+                char[] caracteres = contato.getNome().toCharArray();
+                if (caracteres[0] == letra.charAt(0)) {
+                    System.out.println(contato.status());
+                    contagem ++;
+                }
+
+            }
+        }
+        if (contagem <= 0) {
+            System.err.println("Nenhum contato encontrado!\n");
+        }
+    }
     //Adicionar contatos na lista
     String adicionarContato (Contato [] agenda, Contato pessoa) {
         for (int i = 0; i < agenda.length; i++) {
             if (agenda[i] == null) {
                 agenda[i] = pessoa;
-                return "Contato adicionado!\n";
+                return "\nContato adicionado!\n";
             }
         }
         return "A agenda está cheia!";
@@ -101,6 +120,19 @@ public class Contato {
         }
         return nome + numero + email;
     }
+
+    void listaDeContatos (Contato [] agenda) {
+        System.out.println("Lista de contatos: ");
+        for (Contato contato : agenda) {
+            if (contato != null) {
+                System.out.println(contato.status());
+            }
+        }
+        if (agenda[0] == null) {
+            System.out.println("Agenda Vazia!");
+        }
+    }
+
     //Verificar se é digito
     boolean verificarDigito (String numero){
         int contagemLetra = 0;
@@ -139,9 +171,10 @@ public class Contato {
         }
         return false;
     }
+
     //Mensagens iniciais de interação
     String status () {
-        return "\nNome: " + nome + "\nNúmero: " + numero + "\nEmail: " + email + "\n";
+        return "Nome: " + nome + "\nNúmero: " + numero + "\nEmail: " + email + "\n";
     }
     void saudacao () {
         System.out.println("Bem Vindo a Agenda");
@@ -150,7 +183,7 @@ public class Contato {
     //Escolha para manipulações da lista
     int escolher(Scanner sc) {
         System.out.println("Escolha uma das opções, utilize os números para escolher:");
-        System.out.println("[1] Buscar contato.\n[2] Adicionar novo contato.\n[3] Sair");
+        System.out.println("[1] Buscar contato.\n[2] Buscar contatos por letra.\n[3] Adicionar novo contato.\n[4] Exibir contatos\n[5] Sair");
         int escolha= sc.nextInt();
         sc.nextLine();
         return escolha;
