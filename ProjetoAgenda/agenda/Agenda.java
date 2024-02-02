@@ -9,7 +9,7 @@ public class Agenda {
         int opcao = 1;
         Contato[] agenda = new Contato[50];
 
-        while (opcao != 3) {
+        while (opcao != 5) {
             Contato escolher = new Contato();
             opcao = escolher.escolher(sc);
 
@@ -19,15 +19,22 @@ public class Agenda {
                     break;
 
                 case 2:
-                    Contato verificar = new Contato();
-                    String dadoContato = verificar.testarNome(sc);
-                    Contato pessoa = new Contato(verificar.getNome(), verificar.getNumero(), verificar.getEmail());
-                    String adicionar = pessoa.adicionarContato(agenda, pessoa);
-                    System.out.println("\n" + adicionar);
-
+                    escolher.buscarNomePorLetra(agenda, sc);
                     break;
 
                 case 3:
+                    String dadoContato = escolher.testarNome(sc);
+                    Contato pessoa = new Contato(escolher.getNome(), escolher.getNumero(), escolher.getEmail());
+                    String adicionar = pessoa.adicionarContato(agenda, pessoa);
+                    System.out.println(adicionar);
+                    break;
+
+                case 4:
+                    escolher.listaDeContatos(agenda);
+                    break;
+
+                case 5:
+                    System.out.print("Obrigado por utilizar!");
                     break;
             }
         }
